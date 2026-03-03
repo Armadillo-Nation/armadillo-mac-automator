@@ -1,5 +1,7 @@
 # macOS Automator MCP 🤖 - Your Friendly Neighborhood RoboScripter™
 
+> **Note:** This repo absorbs [`armadillo-mac-osascript`](https://github.com/Armadillo-Nation/armadillo-mac-osascript), which has been archived. All functionality from that repo is available here. The key unique feature from osascript — **SSH/remote execution** — is documented in the [Remote Execution](#remote-execution-ssh) section below.
+
 ![macOS Automator MCP Server](assets/logo.png)
 
 ## 🎯 Mission Control: Teaching Robots to Click Buttons Since 2024
@@ -411,6 +413,31 @@ Here's what your new silicon sidekick can do out of the box:
   ```
 
 🎯 **Pro Tip:** Use `get_scripting_tips` to discover all 200+ automation recipes!
+
+## Remote Execution (SSH)
+
+Execute AppleScript on a remote Mac via SSH — absorbed from `armadillo-mac-osascript`. Add remote credentials as CLI args:
+
+```json
+{
+  "mcpServers": {
+    "macos_automator": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@steipete/macos-automator-mcp@latest",
+        "--remoteHost", "your-mac.local",
+        "--remoteUser", "yourusername",
+        "--remotePassword", "yourpassword"
+      ]
+    }
+  }
+}
+```
+
+**Docker support:** Use `host.docker.internal` as `--remoteHost` to target your Mac host from a container. Requires SSH/Remote Login enabled in macOS System Settings > Sharing.
+
+> **Migration note:** If you were using `@peakmojo/applescript-mcp` (the npm package from the archived osascript repo), switch to `@steipete/macos-automator-mcp`. The tool name changes from `applescript_execute` to `execute_script`, and you gain access to 200+ knowledge base scripts, JXA support, and the accessibility query tool.
 
 ## 📜 Legal Stuff (Robot Rights)
 
